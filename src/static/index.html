@@ -12,13 +12,17 @@
     />
   </head>
   <body>
-    <div class="announcement-banner">
-      📢 As inscrições para atividades estão abertas até o final do mês. Não perca sua vaga!
-    </div>
+    <div id="announcement-banner-container"></div>
     <header>
       <h1>Mergington High School</h1>
       <h2>Atividades Extracurriculares</h2>
       <div id="user-controls">
+        <div id="header-actions">
+          <button id="manage-announcements-btn" class="icon-button hidden" title="Gerenciar Anúncios">
+            <span>📢</span>
+            <span>Anúncios</span>
+          </button>
+        </div>
         <div id="user-status">
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
@@ -100,6 +104,49 @@
     <footer>
       <p>&copy; 2023 Mergington High School</p>
     </footer>
+
+    <!-- Announcements Management Modal -->
+    <div id="announcements-modal" class="modal hidden">
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal">&times;</span>
+        <h3>📢 Gerenciar Anúncios</h3>
+
+        <!-- Add / Edit Form -->
+        <div class="announcement-form-section">
+          <h4 id="announcement-form-title">Novo Anúncio</h4>
+          <form id="announcement-form">
+            <input type="hidden" id="editing-announcement-id" value="" />
+            <div class="form-group">
+              <label for="ann-message">Mensagem:</label>
+              <textarea id="ann-message" rows="3" required placeholder="Digite o texto do anúncio..."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ann-start-date">Data de início <span class="optional-label">(opcional)</span>:</label>
+                <input type="datetime-local" id="ann-start-date" />
+              </div>
+              <div class="form-group">
+                <label for="ann-expires-at">Data de expiração <span class="required-label">*</span>:</label>
+                <input type="datetime-local" id="ann-expires-at" required />
+              </div>
+            </div>
+            <div id="announcement-form-message" class="hidden message"></div>
+            <div class="form-actions">
+              <button type="button" id="cancel-edit-announcement" class="cancel-btn hidden">Cancelar edição</button>
+              <button type="submit" id="save-announcement-btn">Salvar Anúncio</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Announcements List -->
+        <div class="announcements-list-section">
+          <h4>Anúncios Existentes</h4>
+          <div id="announcements-management-list">
+            <p class="loading-text">Carregando...</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Registration Modal -->
     <div id="registration-modal" class="modal hidden">
